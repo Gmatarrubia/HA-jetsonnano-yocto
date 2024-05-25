@@ -1,0 +1,11 @@
+header:
+  version: 12
+
+local_conf_header:
+  debug_features: |
+    EXTRA_IMAGE_FEATURES += "debug-tweaks"
+    CORE_IMAGE_EXTRA_INSTALL += " socat \
+       git \
+       python3-debugpy \
+    "
+    OVERRIDES:append = ":debug"

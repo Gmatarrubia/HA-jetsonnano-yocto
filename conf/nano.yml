@@ -1,0 +1,7 @@
+header:
+  version: 12
+  includes:
+    - ideafix.yml
+
+machine: jetson-nano-devkit
+

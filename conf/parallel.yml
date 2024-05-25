@@ -1,0 +1,8 @@
+header:
+  version: 12
+
+local_conf_header:
+  cpu_use_limitation: |
+    PARALLEL_MAKE = "-j8"
+    BB_NUMBER_THREADS = "8"
+

@@ -1,0 +1,17 @@
+    # Default server configuration
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /home/assistant/ews-assistant;
+
+    index index.html index.htm;
+
+    server_name _;
+
+    # redirect server error pages to the static page /50x.html
+    error_page 500 502 503 504 /50x.html;
+
+    # Include fast cgi wrapper configuration
+    include fcgiwrap.conf;
+}
