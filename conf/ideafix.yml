@@ -1,17 +1,13 @@
 header:
   version: 12
 
-distro: ideafix
+distro: homeassistant
 target:
-  - core-image-minimal
+  - core-image-homeassistant
 
 repos:
   meta-custom:
     path: meta-custom
-  meta-raspberrypi:
-    url: https://github.com/agherzan/meta-raspberrypi
-    path: sources/meta-raspberrypi
-    refspec: kirkstone
 
   poky:
     url: https://git.yoctoproject.org/git/poky
@@ -58,6 +54,12 @@ local_conf_header:
     SDKMACHINE = "x86_64"
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
+    DISTRO_FEATURES:remove = "sysvinit x11"
+    DISTRO_FEATURES:append = " usbhost pam systemd wifi"
+
+  Init manager configs: |
+    INIT_MANAGER = "systemd"
+    VIRTUAL-RUNTIME:init_manager = "systemd"
 
   directory_configs: |
     DL_DIR ?= "${TOPDIR}/../dl"

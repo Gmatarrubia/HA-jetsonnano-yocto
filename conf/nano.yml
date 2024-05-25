@@ -3,5 +3,5 @@ header:
   includes:
     - ideafix.yml
 
-machine: jetson-nano-devkit
+machine: jetson-orin-nano-devkit
 

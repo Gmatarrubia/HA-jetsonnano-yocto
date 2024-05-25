@@ -28,5 +28,6 @@ build/
 qemu/
 rpi3/
 rpizw/
+nano/
 .vscode/settings.json
 assistant-conf/*
