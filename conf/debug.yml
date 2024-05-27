@@ -6,6 +6,5 @@ local_conf_header:
     EXTRA_IMAGE_FEATURES += "debug-tweaks"
     CORE_IMAGE_EXTRA_INSTALL += " socat \
        git \
-       python3-debugpy \
     "
     OVERRIDES:append = ":debug"

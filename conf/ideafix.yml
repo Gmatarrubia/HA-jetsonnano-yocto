@@ -1,5 +1,7 @@
 header:
   version: 12
+  includes:
+    - features.yml
 
 distro: homeassistant
 target:
@@ -31,10 +33,7 @@ repos:
       meta-filesystems:
       meta-webserver:
 
-  meta-tegra:
-    url: https://github.com/OE4T/meta-tegra.git
-    path: sources/meta-tegra
-    refspec: kirkstone
+
 
   meta-homeassistant:
     url: https://github.com/meta-homeassistant/meta-homeassistant.git
@@ -56,8 +55,9 @@ local_conf_header:
     PATCHRESOLVE = "noop"
     DISTRO_FEATURES:remove = "sysvinit x11"
     DISTRO_FEATURES:append = " usbhost pam systemd wifi"
-    WKS_FILE ?= "nano-sd.wks"
-    IMAGE_FSTYPES = "tegraflash tar.gz wic.gz"
+    IMAGE_FSTYPES = "tegraflash tar.gz"
+    IMAGE_ROOTFS_EXTRA_SPACE="22400"
+    IMAGE_ROOTFS_SIZE="1257728"
 
   Init manager configs: |
     INIT_MANAGER = "systemd"
