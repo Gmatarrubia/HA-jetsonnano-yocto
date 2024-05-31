@@ -5,7 +5,7 @@ header:
 
 distro: homeassistant
 target:
-  - core-image-homeassistant
+  - core-image-minimal
 
 repos:
   meta-custom:
@@ -14,7 +14,7 @@ repos:
   poky:
     url: https://git.yoctoproject.org/git/poky
     path: sources/poky
-    refspec: kirkstone
+    branch: kirkstone
     layers:
       meta:
       meta-poky:
@@ -23,7 +23,7 @@ repos:
   meta-openembedded:
     url: https://github.com/openembedded/meta-openembedded
     path: sources/meta-openembedded
-    refspec: kirkstone
+    branch: kirkstone
     layers:
       meta-oe:
       meta-python:
@@ -33,12 +33,15 @@ repos:
       meta-filesystems:
       meta-webserver:
 
-
+  meta-virtualization:
+    url: https://git.yoctoproject.org/git/meta-virtualization
+    path: sources/meta-virtualization
+    branch: kirkstone
 
   meta-homeassistant:
     url: https://github.com/meta-homeassistant/meta-homeassistant.git
     path: sources/meta-homeassistant
-    refspec: kirkstone
+    branch: kirkstone
 
 bblayers_conf_header:
   standard: |
@@ -54,10 +57,13 @@ local_conf_header:
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
     DISTRO_FEATURES:remove = "sysvinit x11"
-    DISTRO_FEATURES:append = " usbhost pam systemd wifi"
+    DISTRO_FEATURES:append = " usbhost pam systemd wifi virtualization"
+    IMAGE_CLASSES += "image_types_tegra"
     IMAGE_FSTYPES = "tegraflash tar.gz"
-    IMAGE_ROOTFS_EXTRA_SPACE="22400"
-    IMAGE_ROOTFS_SIZE="1257728"
+    IMAGE_ROOTFS_EXTRA_SPACE="2240000"
+    IMAGE_ROOTFS_SIZE="30012250"
+    UBOOT_EXTLINUX = "1"
+    UBOOT_EXTLINUX_ROOT = "${cbootargs} root=/dev/mmcblk0p1 rw rootwait"
 
   Init manager configs: |
     INIT_MANAGER = "systemd"

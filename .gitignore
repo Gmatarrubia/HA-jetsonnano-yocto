@@ -31,3 +31,5 @@ rpizw/
 nano/
 .vscode/settings.json
 assistant-conf/*
+output.sh
+homeassistant-backup/

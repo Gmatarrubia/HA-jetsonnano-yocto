@@ -20,12 +20,11 @@ local_conf_header:
       usbutils \
       crda \
       iw \
-      wpa-supplicant \
       xdg-user-dirs \
       htop \
       python3 \
-      python3-homeassistant \
       nano \
+      docker-homeassistant \
     "
   miscelanious_configs: |
-    IMAGE_LINGUAS = "en-US"
+    IMAGE_LINGUAS = "es-ES"

@@ -1,0 +1,37 @@
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - @HOMEASSISTANT_DIR@/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyACM0:/dev/ttyACM0
+    environment:
+      DISABLE_JEMALLOC: 'true'
+  matter-server:
+    container_name: matter-server
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    restart: unless-stopped
+    security_opt:
+      - apparmor=unconfined
+    volumes:
+      - /opt/matter-server:/data
+      - /run/dbus:/run/dbus:ro
+    network_mode: host
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - @HOMEASSISTANT_DIR@/mosquitto/config:/mosquitto/config
+      - @HOMEASSISTANT_DIR@/mosquitto/data:/mosquitto/data
+      - @HOMEASSISTANT_DIR@/mosquitto/log:/mosquitto/log
+

@@ -1,0 +1,12 @@
+[Unit]
+Description=Home Assistant
+After=network.target
+After=docker.service
+
+[Service]
+Type=simple
+User=@HOMEASSISTANT_USER@
+ExecStart=cd "@HOMEASSISTANT_DIR@" && /usr/bin/docker-compose up -d
+
+[Install]
+WantedBy=multi-user.target
