@@ -37,12 +37,12 @@ do_install:append () {
     # Install docker compose stuff
     install -d -o ${HOMEASSISTANT_USER} -g homeassistant ${D}${HOMEASSISTANT_DIR}
     install -m 0644 "${WORKDIR}/compose.yml" "${D}${HOMEASSISTANT_DIR}/"
-    install -d "${D}${HOMEASSISTANT_CONFIG_DIR}/"
     install -d "${D}${HOMEASSISTANT_DIR}/mosquitto"
-    install -d "${D}${HOMEASSISTANT_CONFIG_DIR}/backups"
+    install -d "${D}${HOMEASSISTANT_DIR}/whisper"
+    install -d "${D}${HOMEASSISTANT_DIR}/data"
     for f in "${WORKDIR}"/backup/*
     do
-        install -m 0644 "${f}" "${D}${HOMEASSISTANT_CONFIG_DIR}/backups/"
+        install -m 0644 "${f}" "${D}${HOMEASSISTANT_DIR}/"
     done
     chown -R "${HOMEASSISTANT_USER}" "${D}${HOMEASSISTANT_DIR}"
     sed -i -e 's,@HOMEASSISTANT_DIR@,${HOMEASSISTANT_DIR},g' "${D}${HOMEASSISTANT_DIR}/compose.yml"
@@ -57,7 +57,7 @@ do_install:append () {
 
 # Home assistant docker dependencies
 RDEPENDS:${PN} = " \
-    docker \
+    nvidia-docker \
     python3-docker-compose \
 "
 

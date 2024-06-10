@@ -35,3 +35,42 @@ services:
       - @HOMEASSISTANT_DIR@/mosquitto/data:/mosquitto/data
       - @HOMEASSISTANT_DIR@/mosquitto/log:/mosquitto/log
 
+  whisper:
+    container_name: Whisper
+    image: rhasspy/wyoming-whisper
+    network_mode: host
+    volumes:
+      - @HOMEASSISTANT_DIR@/whisper:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Europe/Madrid
+    command: --model small-int8 --language es
+    restart: unless-stopped
+##
+  piper:
+    container_name: Piper
+    image: rhasspy/wyoming-piper
+    network_mode: host
+    volumes:
+      - @HOMEASSISTANT_DIR@/piper:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Europe/Madrid
+    command: --voice es-es-sharvard-medium
+    restart: unless-stopped
+##
+  openwakeword:
+    container_name: openwakeword
+    image: rhasspy/wyoming-openwakeword
+    network_mode: host
+    volumes:
+      - @HOMEASSISTANT_DIR@/wakeword:/data
+      - @HOMEASSISTANT_DIR@/wakeword:/custom
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Europe/Madrid
+    command: --preload-model 'ok_nabu' --custom-model-dir /custom
+    restart: unless-stopped
