@@ -5,6 +5,7 @@ local_conf_header:
   enable_features: |
     hostname:pn-base-files = "homeassistant"
     CORE_IMAGE_EXTRA_INSTALL += " \
+      bash \
       bridge-utils \
       hostapd \
       iptables \

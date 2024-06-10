@@ -34,10 +34,8 @@ SYSTEMD_AUTO_ENABLE = "enable"
 SYSTEMD_SERVICE:${PN} = "homeassistant.service"
 
 do_install:append () {
-    install -d -o ${HOMEASSISTANT_USER} -g homeassistant ${D}${HOMEASSISTANT_CONFIG_DIR}
-
     # Install docker compose stuff
-    install -d "${D}${HOMEASSISTANT_DIR}/"
+    install -d -o ${HOMEASSISTANT_USER} -g homeassistant ${D}${HOMEASSISTANT_DIR}
     install -m 0644 "${WORKDIR}/compose.yml" "${D}${HOMEASSISTANT_DIR}/"
     install -d "${D}${HOMEASSISTANT_CONFIG_DIR}/"
     install -d "${D}${HOMEASSISTANT_DIR}/mosquitto"
