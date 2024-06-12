@@ -40,6 +40,9 @@ do_install:append () {
     install -d "${D}${HOMEASSISTANT_DIR}/mosquitto"
     install -d "${D}${HOMEASSISTANT_DIR}/whisper"
     install -d "${D}${HOMEASSISTANT_DIR}/data"
+    install -d "${D}${HOMEASSISTANT_DIR}/piper"
+    install -d "${D}${HOMEASSISTANT_DIR}/wakeword"
+
     for f in "${WORKDIR}"/backup/*
     do
         install -m 0644 "${f}" "${D}${HOMEASSISTANT_DIR}/"
