@@ -60,8 +60,7 @@ local_conf_header:
     DISTRO_FEATURES:append = " usbhost pam systemd wifi virtualization"
     IMAGE_CLASSES += "image_types_tegra"
     IMAGE_FSTYPES = "tegraflash tar.gz"
-    IMAGE_ROOTFS_EXTRA_SPACE="2240000"
-    IMAGE_ROOTFS_SIZE="30012250"
+    IMAGE_ROOTFS_SIZE="30314751"
     UBOOT_EXTLINUX = "1"
     UBOOT_EXTLINUX_ROOT = "${cbootargs} root=/dev/mmcblk0p1 rw rootwait"
 
