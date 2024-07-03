@@ -17,7 +17,7 @@ local_conf_header:
       procps \
       tzdata \
       canutils \
-      nmap \
+      bluez5 \
       usbutils \
       crda \
       iw \

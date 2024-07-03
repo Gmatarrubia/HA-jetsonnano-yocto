@@ -57,7 +57,7 @@ local_conf_header:
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
     DISTRO_FEATURES:remove = "sysvinit x11"
-    DISTRO_FEATURES:append = " usbhost pam systemd wifi virtualization"
+    DISTRO_FEATURES:append = " usbhost pam systemd wifi virtualization bluetooth"
     IMAGE_CLASSES += "image_types_tegra"
     IMAGE_FSTYPES = "tegraflash tar.gz"
     IMAGE_ROOTFS_SIZE="30314751"
