@@ -1,0 +1,14 @@
+header:
+  version: 17
+repos:
+  meta-tegra:
+    url: https://github.com/OE4T/meta-tegra.git
+    path: sources/meta-tegra
+    branch: scarthgap
+    commit: dd3e9f679fb63bbc531e5ee0977ed9e78561d9cd
+    # This commit is based on Nvidia's Jetpack L4T R36.4.4
+  meta-tegra-community:
+    url: https://github.com/OE4T/meta-tegra-community.git
+    path: sources/meta-tegra-community
+    branch: scarthgap
+    commit: 241d1073ba8e610ef8da3fe8470b0a4d0567521f

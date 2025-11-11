@@ -1,0 +1,12 @@
+header:
+  version: 17
+
+repos:
+  meta-security:
+    url: https://git.yoctoproject.org/meta-security
+    path: sources/security
+    commit: bc865c5276c2ab4031229916e8d7c20148dfbac3
+    layers:
+      ../security:
+      meta-tpm:
+      meta-parsec:

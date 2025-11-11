@@ -7,6 +7,8 @@ After=docker.service
 Type=simple
 User=@HOMEASSISTANT_USER@
 ExecStart=cd "@HOMEASSISTANT_DIR@" && /usr/bin/docker-compose up -d
+Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

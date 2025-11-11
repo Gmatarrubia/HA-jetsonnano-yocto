@@ -1,17 +1,24 @@
 #!/bin/bash
 
 repoPath="$(dirname $(realpath ${BASH_SOURCE[0]}))"
-source checkFunctions.sh
+source extraFunctions.sh
 
 # Script arguments handle
 __verbose=
 __bitbake_cmd=()
 __only_shell=
-__wifi_settings_interactive=
-__debug=
 __parallel_limit=
+__wifi_settings_interactive=
 __cores=
-__conf_name=qemu
+__conf_name=nano-sd
+__extra_conf_files=
+__cache_server_path="/work/sstate"
+__source_yml_path="${repoPath}/targets/sources"
+__features_yml_path="${repoPath}/targets/features"
+__sstate_cache_file="${__source_yml_path}/use-sstate-cache.yml"
+__debug_conf_file="${__features_yml_path}/debug.yml"
+__cve_conf_file="${__features_yml_path}/cve.yml"
+__audit_conf_file="${__features_yml_path}/audit.yml"
 
 while (( $# )); do
     case ${1,,} in
@@ -19,7 +26,7 @@ while (( $# )); do
             __verbose=1
             echo "Verbose output enabled"
             ;;
-        -bc|--bitbake-cmd)
+        -b|--bitbake)
             shift
             __bitbake_cmd+=("${@}")
             echo Custom bitbake command: "${__bitbake_cmd[@]}"
@@ -36,7 +43,10 @@ while (( $# )); do
             __wifi_settings_interactive=1
             ;;
         -d|--debug)
-            __debug=":${repoPath}/conf/debug.yml"
+            __extra_conf_files="${__extra_conf_files}:${__debug_conf_file}"
+            ;;
+        -cve|--cve)
+            __extra_conf_files="${__extra_conf_files}:${__cve_conf_file}"
             ;;
         -j)
             __parallel_limit=":${repoPath}/conf/parallel.yml"
@@ -52,12 +62,15 @@ while (( $# )); do
 done
 
 # Start configuration
-export CONF_FILE="${repoPath}/conf/${__conf_name}.yml"
-export KAS_BUILD_DIR="${repoPath}/${__conf_name}"
+export CONF_FILE="${repoPath}/targets/${__conf_name}.yml"
+export KAS_BUILD_DIR="${repoPath}/build_${__conf_name}"
+test -f "${HOME}/.git-credentials" && export GIT_CREDENTIAL_HELPER="${HOME}/.git-credentials"
+test -f "${HOME}/.netrc" && export NETRC_FILE="${HOME}/.netrc"
+#test -f "${HOME}/.ssh/id_rsa" && export SSH_PRIVATE_KEY_FILE="${HOME}/.ssh/id_rsa"
 export DL_DIR="${repoPath}/dl"
 export SSTATE_DIR="${repoPath}/sstate"
 export SHELL="/bin/bash"
-rm -rf "${__conf_name}"/conf/*
+rm -rf "${__conf_name}"/targets/*
 
 # Check availability of the kas tool
 check_kas
@@ -110,18 +123,21 @@ then
     kas shell "${CONF_FILE}" -c "bitbake -e" > bb.environment
 fi
 
+if [ -n "$(ls -A $__cache_server_path)" ]; then
+    __extra_conf_files="${__extra_conf_files}:${__sstate_cache_file}"
+fi
+
 # Start environment in shell mode
 if [ -n "${__only_shell}" ]
 then
-    kas shell -E "${CONF_FILE}${__debug}"
+    kas shell -E "${CONF_FILE}${__extra_conf_files}"
     exit 0
 fi
 
-
 if [ -z "${__bitbake_cmd[*]}" ]
 then
-    time kas build "${CONF_FILE}${__debug}${__parallel_limit}"
+    time kas build "${CONF_FILE}${__extra_conf_files}"
 else
     echo "Executing command: ${__bitbake_cmd[*]}"
-    time kas shell "${CONF_FILE}${__debug}${__parallel_limit}" -c "${__bitbake_cmd[*]}"
+    time kas shell "${CONF_FILE}${__extra_conf_files}" -c "${__bitbake_cmd[*]}"
 fi

@@ -1,0 +1,12 @@
+header:
+  version: 17
+
+repos:
+  meta-poky:
+    url: https://git.yoctoproject.org/git/poky
+    path: sources/poky
+    commit: c4a4df3e720e2d8a3dd2c2a0467704a42b468205
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:

@@ -1,0 +1,17 @@
+header:
+  version: 17
+
+repos:
+  meta-openembedded:
+    url: https://github.com/openembedded/meta-openembedded.git
+    path: sources/openembedded
+    commit: 15e18246dd0c0585cd1515a0be8ee5e2016d1329
+    layers:
+      meta-oe:
+      meta-perl:
+      meta-python:
+      meta-filesystems:
+      meta-initramfs:
+      meta-networking:
+      meta-webserver:
+      meta-multimedia:

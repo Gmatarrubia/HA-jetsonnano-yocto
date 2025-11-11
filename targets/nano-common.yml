@@ -1,0 +1,21 @@
+header:
+  version: 17
+  includes:
+    - targets/common.yml
+    - targets/sources/arm.yml
+    - targets/sources/clang.yml
+    - targets/sources/nvidia.yml
+    - targets/sources/oe.yml
+    - targets/sources/poky.yml
+    - targets/sources/virtualization.yml
+    - targets/sources/security.yml
+
+distro: ideafix
+
+# Note: The machine is defined in the specific jetson nano target files
+# machine:
+
+target:
+  - core-image-minimal
+
+

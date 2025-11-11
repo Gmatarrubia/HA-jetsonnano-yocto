@@ -22,6 +22,6 @@ fi
     gawk wget git-core diffstat unzip \
     texinfo build-essential chrpath \
     socat cpio python3 python3-pip zstd \
-    libsdl1.2-dev
+    libsdl1.2-dev podman
 
-pip3 install kas==3.0.2
+pip3 install kas==5.0

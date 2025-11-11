@@ -1,0 +1,8 @@
+header:
+  version: 17
+
+repos:
+  meta-qt6:
+    url: https://code.qt.io/yocto/meta-qt6.git
+    path: sources/qt6
+    commit: 586a6cb5aec755803a3be3cec359baafe89d6432

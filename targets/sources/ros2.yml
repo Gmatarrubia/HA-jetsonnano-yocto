@@ -1,0 +1,13 @@
+header:
+  version: 17
+
+repos:
+  meta-mingw:
+    url: https://github.com/Xilinx/meta-ros
+    path: sources/meta-ros2
+    commit: ff76fa90fb66d0b83238d99f882c60f2373eb875
+    # branch rel-v2025.1
+    layers:
+      meta-ros-common:
+      meta-ros2:
+      meta-ros2-jazzy:

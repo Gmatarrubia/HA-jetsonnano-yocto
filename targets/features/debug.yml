@@ -1,0 +1,6 @@
+header:
+  version: 17
+
+local_conf_header:
+  debug_features: |
+    OVERRIDES:append = ":debug"

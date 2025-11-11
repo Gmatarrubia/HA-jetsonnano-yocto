@@ -1,0 +1,7 @@
+header:
+  version: 17
+
+local_conf_header:
+  enable cve checking: |
+    INHERIT += "cve-check"
+ 

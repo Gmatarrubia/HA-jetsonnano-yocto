@@ -1,0 +1,6 @@
+header:
+  version: 17
+  includes:
+    - targets/nano-common.yml
+
+machine: custom-jetson-nano-sd

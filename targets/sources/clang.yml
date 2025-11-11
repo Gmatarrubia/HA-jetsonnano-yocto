@@ -1,0 +1,8 @@
+header:
+  version: 17
+
+repos:
+  meta-clang:
+    url: https://github.com/kraj/meta-clang.git
+    path: sources/clang
+    commit: 2b7433611d80f6d0ee1b04156fa91fc73d3c2665

@@ -1,0 +1,12 @@
+header:
+  version: 17
+
+repos:
+  meta-arm:
+    url: https://git.yoctoproject.org/git/meta-arm
+    path: sources/arm
+    commit: 950a4afce46a359def2958bd9ae33fc08ff9bb0d
+    layers:
+      meta-arm:
+      meta-arm-bsp:
+      meta-arm-toolchain:

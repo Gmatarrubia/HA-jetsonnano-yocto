@@ -1,0 +1,7 @@
+header:
+  version: 17
+repos:
+  meta-homeassistant:
+    url: https://github.com/meta-homeassistant/meta-homeassistant.git
+    path: sources/meta-homeassistant
+    branch: scarthgap
