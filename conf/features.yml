@@ -26,6 +26,7 @@ local_conf_header:
       python3 \
       nano \
       docker-homeassistant \
+      lsb-release \
     "
   miscelanious_configs: |
     IMAGE_LINGUAS = "es-ES"
